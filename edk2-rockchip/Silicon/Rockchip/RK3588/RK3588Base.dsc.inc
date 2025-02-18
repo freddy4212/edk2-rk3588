@@ -192,7 +192,7 @@
   # UART2 - Serial Terminal
   DEFINE SERIAL_BASE = 0xFEB50000 # UART2
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|$(SERIAL_BASE)
-  gHisiTokenSpaceGuid.PcdSerialPortSendDelay|500000
+  gHisiTokenSpaceGuid.PcdSerialPortSendDelay|115200
   gHisiTokenSpaceGuid.PcdUartClkInHz|24000000
 
   # SPI - SPI2 for test
