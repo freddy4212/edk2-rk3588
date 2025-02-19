@@ -285,9 +285,9 @@ PciePowerEn (
     case PCIE_SEGMENT_PCIE30X4:
       GpioPinWrite (2, GPIO_PIN_PB6, Enable);
       break;
-    case PCIE_SEGMENT_PCIE20L0:
-      GpioPinWrite (2, GPIO_PIN_PC5, Enable);
-      break;
+    // case PCIE_SEGMENT_PCIE20L0:
+    //   GpioPinWrite (2, GPIO_PIN_PC5, Enable);
+    //   break;
     case PCIE_SEGMENT_PCIE20L1:
     case PCIE_SEGMENT_PCIE20L2:
       /* Yes, disabling one would disable the other as well. */
