@@ -213,9 +213,13 @@ UsbPortPowerEnable (
   GpioPinWrite (3, GPIO_PIN_PD5, TRUE);
   GpioPinSetDirection (3, GPIO_PIN_PD5, GPIO_PIN_OUTPUT);
 
-  /* typec5v_pwren */
-  GpioPinWrite (4, GPIO_PIN_PB0, TRUE);
-  GpioPinSetDirection (4, GPIO_PIN_PB0, GPIO_PIN_OUTPUT);
+  /* vcc5v0_otg_en */
+  GpioPinWrite (4, GPIO_PIN_PB7, TRUE);
+  GpioPinSetDirection (4, GPIO_PIN_PB7, GPIO_PIN_OUTPUT);
+
+  // /* typec5v_pwren */
+  // GpioPinWrite (4, GPIO_PIN_PB0, TRUE);
+  // GpioPinSetDirection (4, GPIO_PIN_PB0, GPIO_PIN_OUTPUT);
 }
 
 VOID
