@@ -250,7 +250,7 @@ PcieIoInit (
       /* vcc3v3_pcie30 */
       GpioPinSetDirection (2, GPIO_PIN_PB6, GPIO_PIN_OUTPUT);
       break;
-    case PCIE_SEGMENT_PCIE20L0: // M.2 A+E Key
+    case PCIE_SEGMENT_PCIE20L0: // M.2 A+E Key // Change to a little and weird PCIe slot
       /* reset */
       GpioPinSetDirection (4, GPIO_PIN_PA5, GPIO_PIN_OUTPUT);
       // /* vcc3v3_pcie2x1l0 */
@@ -259,19 +259,21 @@ PcieIoInit (
     case PCIE_SEGMENT_PCIE20L1: // RTL8125B
       /* reset */
       GpioPinSetDirection (3, GPIO_PIN_PD4, GPIO_PIN_OUTPUT);
+      /* vcc3v3_pcie_eth */
+      GpioPinSetDirection (0, GPIO_PIN_PD3, GPIO_PIN_OUTPUT);
       break;
-    case PCIE_SEGMENT_PCIE20L2: // RTL8125B
-      /* reset */
-      GpioPinSetDirection (4, GPIO_PIN_PA2, GPIO_PIN_OUTPUT);
-      break;
+    // case PCIE_SEGMENT_PCIE20L2: // RTL8125B
+    //   /* reset */
+    //   GpioPinSetDirection (4, GPIO_PIN_PA2, GPIO_PIN_OUTPUT);
+    //   break;
     default:
       break;
   }
 
-  if ((Segment == PCIE_SEGMENT_PCIE20L1) || (Segment == PCIE_SEGMENT_PCIE20L2)) {
-    /* vcc3v3_pcie_eth */
-    GpioPinSetDirection (3, GPIO_PIN_PB4, GPIO_PIN_OUTPUT);
-  }
+  // if ((Segment == PCIE_SEGMENT_PCIE20L1) || (Segment == PCIE_SEGMENT_PCIE20L2)) {
+  //   /* vcc3v3_pcie_eth */
+  //   GpioPinSetDirection (3, GPIO_PIN_PB4, GPIO_PIN_OUTPUT);
+  // }
 }
 
 VOID
@@ -289,9 +291,11 @@ PciePowerEn (
     //   GpioPinWrite (2, GPIO_PIN_PC5, Enable);
     //   break;
     case PCIE_SEGMENT_PCIE20L1:
+      GpioPinWrite (0, GPIO_PIN_PD3, !Enable);
+      break;
     case PCIE_SEGMENT_PCIE20L2:
-      /* Yes, disabling one would disable the other as well. */
-      GpioPinWrite (3, GPIO_PIN_PB4, !Enable);
+      // /* Yes, disabling one would disable the other as well. */
+      // GpioPinWrite (3, GPIO_PIN_PB4, !Enable);
       break;
     default:
       break;
@@ -315,9 +319,9 @@ PciePeReset (
     case PCIE_SEGMENT_PCIE20L1:
       GpioPinWrite (3, GPIO_PIN_PD4, !Enable);
       break;
-    case PCIE_SEGMENT_PCIE20L2:
-      GpioPinWrite (4, GPIO_PIN_PA2, !Enable);
-      break;
+    // case PCIE_SEGMENT_PCIE20L2:
+    //   GpioPinWrite (4, GPIO_PIN_PA2, !Enable);
+    //   break;
     default:
       break;
   }
